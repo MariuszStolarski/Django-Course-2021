@@ -16,7 +16,8 @@ monthly_challanges = {
     "march": "This is Merch",
     "april": "This is April",
     "may": "This is May",
-    "june": "This is June"
+    "june": "This is June",
+    "july": None
 }
 
 
@@ -24,8 +25,8 @@ def index(request):
     list_items = ""
     months = list(monthly_challanges.keys())
 
-    return render(request, "challenges/index.html",{
-        "months" : months
+    return render(request, "challenges/index.html", {
+        "months": months
     })
 
     # the old way:
@@ -55,8 +56,9 @@ def monthly_challenge(request, month):
         # return HttpResponse(response_data)
         # or just:
         return render(request, "challenges/challenge.html", {
-            "month_name" : month,
-            "challenge_text": challange_text # this allows to inject the new contentn to the html in the template
+            "month_name": month,
+            # this allows to inject the new contentn to the html in the template
+            "challenge_text": challange_text
         })
     except:
         return HttpResponseNotFound(error_codes["not_supported"])
