@@ -61,4 +61,5 @@ def monthly_challenge(request, month):
             "challenge_text": challange_text
         })
     except:
-        return HttpResponseNotFound(error_codes["not_supported"])
+        response_data = render_to_string("404.html")
+        return HttpResponseNotFound(response_data)
