@@ -1,9 +1,7 @@
 from django.shortcuts import render, resolve_url
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 # allows to build paths, by extracting the path by name and injecting arguments
 from django.urls import reverse
-# allows to convert html into the string
-from django.template.loader import render_to_string
 
 error_codes = {
     "invalid_argument": "<h1>Invalid month</h1>",
@@ -61,5 +59,6 @@ def monthly_challenge(request, month):
             "challenge_text": challange_text
         })
     except:
-        response_data = render_to_string("404.html")
-        return HttpResponseNotFound(response_data)
+        # by using Http404, it will automatically look for 404.html template file
+        # however, it will not work proparly if there is "DEBUG = True" set in the setting.py
+        raise Http404() 
