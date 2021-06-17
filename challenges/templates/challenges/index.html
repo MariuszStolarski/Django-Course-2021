@@ -3,6 +3,7 @@
 
 {% block css_files %}
     <link rel="stylesheet" href="{% static "challenges/challenges.css" %}">
+    <link rel="stylesheet" href="{% static "challenges/includes/header.css" %}">
 {% endblock %}
 
 {% block page_title %}
@@ -12,7 +13,6 @@
 {% block content %}
     {% include "challenges/includes/header.html" %}
     <ul>
-        <h1> All Challenges </h1>
         {% for month in months %}
             <li><a href="{% url "month-challange" month %}">{{month|title}}</a></li>
         {% endfor %}
