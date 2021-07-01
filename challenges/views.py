@@ -27,15 +27,6 @@ def index(request):
         "months": months
     })
 
-    # the old way:
-    for month in months:
-        capitalized_month = month.capitalize()
-        month_path = reverse("month-challange", args=[month])
-        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
-
-    response_data = f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
-
 
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challanges.keys())
@@ -61,4 +52,4 @@ def monthly_challenge(request, month):
     except:
         # by using Http404, it will automatically look for 404.html template file
         # however, it will not work proparly if there is "DEBUG = True" set in the setting.py
-        raise Http404() 
+        raise Http404()
